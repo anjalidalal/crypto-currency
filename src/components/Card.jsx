@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Card = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
     axios
       .get(
@@ -16,8 +17,24 @@ const Card = () => {
 
   console.log(data);
   return (
-    <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
+    <div className="flex flex-col items-center justify-center p-3">
       <h1>Crypto Currency</h1>
+      {isLoading ? (
+        <div>Loading</div>
+      ) : (
+        <div className="flex flex-wrap items-center justify-center gap-8">
+          {data?.map((el) => (
+            <div
+              key={el.id}
+              className=" h-64 w-60 p-2.5 bg-white shadow-lg rounded-lg flex flex-col items-center justify-center"
+            >
+              <img src={el.image} className="w-9/12 h-32" alt="" />
+              <h1 className="text-2xl font-bold my-3">{el.name}</h1>
+              <p>${el.current_price}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
