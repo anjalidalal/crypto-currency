@@ -41,19 +41,19 @@ const Card = () => {
         </div>
       ) : (
         <>
-          <div>
+          {" "}
+          <div className="flex items-center w-full justify-between mt-1 mb-5">
             {" "}
-            <h1 className="text-white text-3xl font-bold my-5">
-              Crypto Currency
-            </h1>
-            <Pagination
-              totalPosts={data.length}
-              postsPerPage={postsPerPage}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-            />
+            <h1 className="text-white text-3xl font-bold">Crypto Currency</h1>
+            <img src="./profile.png" width="40px" heigt="40px" alt="" />
           </div>
-          <div className="flex flex-wrap items-center justify-center px-7 gap-8">
+          <Pagination
+            totalPosts={data.length}
+            postsPerPage={postsPerPage}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+          <div className="flex flex-wrap items-center justify-center px-7 my-6 gap-8">
             {currentPosts?.map((el) => (
               <div
                 key={el.id}

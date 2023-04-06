@@ -66,7 +66,10 @@
 }
 .pagination {
   display: flex;
-  gap: 5px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }
 .pagination > button {
   border: 1px solid black;
@@ -74,10 +77,17 @@
   padding: 5px;
   width: 35px;
   height: 35px;
-  background-color: lightgrey;
+  font-size: 18px;
+  font-weight: 600;
 }
 .notActive {
   border-radius: 50%;
   border: none;
   background-color: lightgrey;
+}
+.active {
+  background-color: rgb(17, 145, 224);
+  border-radius: 50%;
+  color: #fff;
+  border: none;
 }
