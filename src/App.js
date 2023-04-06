@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getUser } from "./Redux/Action";
 import { auth } from "./firebase";
-import Login from "./components/Login";
+import Home from "./components/Home";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const App = () => {
   }, []);
   return (
     <>
-      <Login />
+      <Home />
     </>
   );
 };
