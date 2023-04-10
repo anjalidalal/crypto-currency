@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import axios from "axios";
 import Pagination from "./Pagination";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   const [data, setData] = useState([]);
@@ -15,19 +16,29 @@ const Card = () => {
         " https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false"
       )
       .then((response) => {
-        console.log(response);
         setData(response.data);
         setIsLoading(false);
       });
   }, []);
 
-  const lastPostIndex = currentPage * postsPerPage;
-  const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = data.slice(firstPostIndex, lastPostIndex);
+  const lastIndex = currentPage * postsPerPage;
+  const firstIndex = lastIndex - postsPerPage;
+  const currentPosts = data.slice(firstIndex, lastIndex);
 
-  console.log(data);
+  const handlePrevPage = () => {
+    if (currentPage !== firstIndex) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handleLastPage = () => {
+    if (currentPage !== lastIndex) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
-    <div className="flex flex-col items-center justify-center p-3">
+    <div className="flex flex-col items-center justify-center">
       {isLoading ? (
         <div className="text-white text-2xl font-semiBold flex flex-col items-center gap-3 my-20">
           <RotatingLines
@@ -41,19 +52,24 @@ const Card = () => {
         </div>
       ) : (
         <>
-          {" "}
-          <div className="flex items-center w-full justify-between mt-1 mb-5">
-            {" "}
-            <h1 className="text-white text-3xl font-bold">Crypto Currency</h1>
-            <img src="./profile.png" width="40px" heigt="40px" alt="" />
+          <div className="flex items-center w-screen justify-between mt-1 mb-5 p-2">
+            <div className="flex items-center gap-1 mx-1">
+              <h1 className="text-white text-3xl font-bold">Crypto Currency</h1>
+              <img src="./crypto.png" className="w-9 h-9" alt="" />
+            </div>
+            <Link to="/profile">
+              <img src="./profile.png" className="w-8 h-8 mx-1" alt="" />
+            </Link>
           </div>
           <Pagination
             totalPosts={data.length}
             postsPerPage={postsPerPage}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            handlePrevPage={handlePrevPage}
+            handleLastPage={handleLastPage}
           />
-          <div className="flex flex-wrap items-center justify-center px-7 my-6 gap-8">
+          <div className=" items-center grid my-7 justify-center gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
             {currentPosts?.map((el) => (
               <div
                 key={el.id}

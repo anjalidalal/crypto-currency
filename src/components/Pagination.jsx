@@ -6,6 +6,8 @@ const Pagination = ({
   postsPerPage,
   setCurrentPage,
   currentPage,
+  handlePrevPage,
+  handleLastPage,
 }) => {
   let pages = [];
 
@@ -15,23 +17,37 @@ const Pagination = ({
 
   return (
     <div className={styles.pagination}>
-      {/* <button>Prev</button> */}
+      <button onClick={handlePrevPage} className={styles.notActive}>
+        {" "}
+        <img
+          src="./prev.png"
+          width="22px"
+          height="22px"
+          className="pr-1"
+          alt=""
+        />{" "}
+      </button>
       {pages.map((page, index) => {
         return (
-          <>
-            <button
-              key={index}
-              onClick={() => setCurrentPage(page)}
-              className={
-                page === currentPage ? styles.active : styles.notActive
-              }
-            >
-              {page}
-            </button>
-          </>
+          <button
+            key={index}
+            onClick={() => setCurrentPage(page)}
+            className={page === currentPage ? styles.active : styles.notActive}
+          >
+            {page}
+          </button>
         );
       })}
-      {/* <button>Next</button> */}
+      <button onClick={handleLastPage} className={styles.notActive}>
+        {" "}
+        <img
+          src="./next.png"
+          width="22px"
+          height="22px"
+          className="pl-1"
+          alt=""
+        />{" "}
+      </button>
     </div>
   );
 };

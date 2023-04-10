@@ -1,15 +1,14 @@
 import React from "react";
-import { Route } from "react-router";
-import Card from "./Card";
-import { Routes } from "react-router-dom";
+import { Route, Routes } from "react-router";
 import Home from "./Home";
+import Profile from "./Profile";
 
 const Router = () => {
   return (
     <>
       <Routes>
-        <Route to="/" element={<Home />} />
-        <Route to="/crypto-card" element={<Card />} />
+        <Route exact path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </>
   );
