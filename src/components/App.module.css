@@ -107,6 +107,14 @@ input {
   scroll-snap-type: y mandatory;
   width: 100%;
 }
+.tableComponent::-webkit-scrollbar {
+  display: none;
+}
+
+.tableComponent {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
 .table {
   padding: 10px;
   display: flex;
