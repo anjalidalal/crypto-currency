@@ -6,6 +6,6 @@ import CardDetail from "./CardDetail";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
-  return <>{user ? <CardDetail /> : <Login />}</>;
+  return <>{user ? <Card /> : <Login />}</>;
 };
 export default Home;

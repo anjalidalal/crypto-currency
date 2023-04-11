@@ -26,14 +26,6 @@ const Profile = () => {
   };
   return (
     <div className="w-screen h-screen flex flex-col justify-center items-center bg-slate-200">
-      <button>
-        {" "}
-        <img
-          src="./prev.png"
-          className="w-7 h-7 mx-2 my-3 fixed inset-0"
-          alt=""
-        />{" "}
-      </button>
       <div className="p-2 flex flex-col gap-3 items-center shadow-lg rounded-xl bg-white">
         <h1 className="text-3xl font-semibold">Profile</h1>
         <div className="flex items-center gap-2 justify-center md:my-3">
@@ -86,7 +78,7 @@ const Profile = () => {
               placeholder="MM/DD/YYYY"
             />
           </div>
-          <div onClick={signOut}>
+          <div>
             <p className={styles.title}>Log Out</p>
             <img src="./logout.png" width="25px" height="25px" alt="" />
           </div>

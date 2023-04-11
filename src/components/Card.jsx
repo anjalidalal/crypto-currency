@@ -3,6 +3,7 @@ import { RotatingLines } from "react-loader-spinner";
 import axios from "axios";
 import Pagination from "./Pagination";
 import Header from "./Header";
+import { Link } from "react-router-dom";
 
 const Card = () => {
   const [data, setData] = useState([]);
@@ -40,7 +41,7 @@ const Card = () => {
   return (
     <div className="flex flex-col items-center justify-center w-screen">
       {isLoading ? (
-        <div className="text-white text-2xl font-semiBold flex flex-col items-center gap-3 my-20">
+        <div className="text-slate-800 text-2xl font-semiBold flex flex-col items-center gap-3 my-20">
           <RotatingLines
             strokeColor="grey"
             strokeWidth="5"
@@ -63,14 +64,18 @@ const Card = () => {
           />
           <div className=" items-center grid my-7 justify-center gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
             {currentPosts?.map((el) => (
-              <div
-                key={el.id}
-                className=" h-64 w-60 p-2.5 bg-white shadow-lg rounded-lg flex flex-col items-center justify-center"
-              >
-                <img src={el.image} className="w-9/12 h-32" alt="" />
-                <h1 className="text-2xl font-bold my-3">{el.name}</h1>
-                <p>${el.current_price}</p>
-              </div>
+              <>
+                <Link to="/currency-detail">
+                  <div
+                    key={el.id}
+                    className=" h-64 w-60 p-2.5 bg-white shadow-lg rounded-lg flex flex-col items-center justify-center"
+                  >
+                    <img src={el.image} className="w-9/12 h-32" alt="" />
+                    <h1 className="text-2xl font-bold my-3">{el.name}</h1>
+                    <p>${el.current_price}</p>
+                  </div>
+                </Link>
+              </>
             ))}
           </div>
         </>

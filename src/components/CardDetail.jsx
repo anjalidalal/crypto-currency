@@ -7,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
+import styles from "./App.module.css";
 import axios from "axios";
 import Header from "./Header";
 
@@ -27,38 +27,61 @@ const CardDetail = () => {
   }, []);
   console.log(data);
   return (
-    <div className="p-3">
-      <Header />
-      <TableContainer component={Paper} className="mt-16">
-        <Table className="w-full" aria-label="simple table">
-          <TableHead>
-            <TableRow>
-              {/* <TableCell>Logo</TableCell> */}
-              <TableCell component="th" scope="row" align="leftt">
-                Name
-              </TableCell>
-              <TableCell align="right">Price</TableCell>
-              <TableCell align="right">Symbol</TableCell>
-              <TableCell align="right">Toatal_Price</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {data.map((el) => (
-              <TableRow
-                key={el.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-              >
-                {/* <TableCell align="right"></TableCell> */}
-                <TableCell align="left">{el.name}</TableCell>
-                <TableCell align="right">${el.current_price}</TableCell>
-                <TableCell align="right">{el.symbol}</TableCell>
-                <TableCell align="right">${el.total_supply}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <>
+      {isLoading ? (
+        <div className="text-slate-800 text-2xl font-semiBold flex flex-col items-center gap-3 my-20">
+          <RotatingLines
+            strokeColor="grey"
+            strokeWidth="5"
+            animationDuration="0.75"
+            width="66"
+            visible={true}
+          />
+          Loading...
+        </div>
+      ) : (
+        <>
+          <Header />
+          <div className={styles.tableComponent}>
+            <TableContainer component={Paper}>
+              <Table className={styles.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="left">Logo</TableCell>
+                    <TableCell component="th" scope="row" align="leftt">
+                      Name
+                    </TableCell>
+                    <TableCell align="right">Price</TableCell>
+                    <TableCell align="right">Symbol</TableCell>
+                    <TableCell align="right">Toatal_Price</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data.map((el) => (
+                    <TableRow
+                      key={el.id}
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell align="right">
+                        <img
+                          src={el.image}
+                          className="rounded-full w-8 h-8 "
+                          alt=""
+                        />
+                      </TableCell>
+                      <TableCell align="left">{el.name}</TableCell>
+                      <TableCell align="right">${el.current_price}</TableCell>
+                      <TableCell align="right">{el.symbol}</TableCell>
+                      <TableCell align="right">${el.total_supply}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 
