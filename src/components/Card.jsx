@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { RotatingLines } from "react-loader-spinner";
 import axios from "axios";
 import Pagination from "./Pagination";
-import { Link } from "react-router-dom";
+import Header from "./Header";
 
 const Card = () => {
   const [data, setData] = useState([]);
@@ -38,7 +38,7 @@ const Card = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center w-screen">
       {isLoading ? (
         <div className="text-white text-2xl font-semiBold flex flex-col items-center gap-3 my-20">
           <RotatingLines
@@ -52,15 +52,7 @@ const Card = () => {
         </div>
       ) : (
         <>
-          <div className="flex items-center w-screen justify-between mt-1 mb-5 p-2">
-            <div className="flex items-center gap-1 mx-1">
-              <h1 className="text-white text-3xl font-bold">Crypto Currency</h1>
-              <img src="./crypto.png" className="w-9 h-9" alt="" />
-            </div>
-            <Link to="/profile">
-              <img src="./profile.png" className="w-8 h-8 mx-1" alt="" />
-            </Link>
-          </div>
+          <Header />
           <Pagination
             totalPosts={data.length}
             postsPerPage={postsPerPage}

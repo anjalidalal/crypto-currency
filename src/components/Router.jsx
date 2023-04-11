@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Routes } from "react-router";
 import Home from "./Home";
-import Profile from "./Profile";
+import Profile from "./profile/Profile";
 
 const Router = () => {
   return (
